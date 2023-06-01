@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+<p></p>
+        <button>button</button>
+    </div>
+    <script>
+        let p = document.querySelector('p')
+        let btn = document.querySelector('button')
+        let arr = [
+            {a:1, b:2},
+            {a:3, b:4}
+        ]
+        show();
+        function show(){
+            arr.forEach(ele=>{
+                p.innerHTML+=`${ele.a}<br>${ele.b}<br>`
+            })
+        }
+        btn.addEventListener('click',e=>{
+            arr[0].a++
+            arr[0].b++
+            arr[1].a--
+            arr[1].b--
+            console.log(arr);
+            show();
+        })
+    </script>
+</body>
+</html>

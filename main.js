@@ -13,8 +13,13 @@ let $cartUl = get('#container .cart_box ul');
 let $li = getAll('#container .inner ul li');
 let $ht = getAll('#container .inner ul li .xi-heart-o');
 let $add = getAll('#container .inner ul li .xi-cart-add');
+let $incre = getAll('#container .cart_box ul .incre');
+let $redu = getAll('#container .cart_box ul .redu');
 let $jjimCart = get('.jjim')
 let uh = 1250;
+let idList = []
+let cartList = []
+let deduList = []
 
 let list = [
     { id: 0, name: '슬릿 스커트', price: 32000, stock: 11, heart: false, cart: false, cartStock: 0 },
@@ -30,6 +35,7 @@ let list = [
     { id: 10, name: '백버튼 니트', price: 29000, stock: 7, heart: false, cart: false, cartStock: 0 },
     { id: 11, name: '폴리 치마', price: 18000, stock: 9, heart: false, cart: false, cartStock: 0 }
 ];
+
 show();
 
 function priceToString(price) {
@@ -38,11 +44,18 @@ function priceToString(price) {
 
 // re
 function re() {
+    $ul_box = get('#container .inner .ul_box');
+    $ul = get('#container .inner ul');
+    $cartUl = get('#container .cart_box ul');
     $li = getAll('#container .inner ul li');
     $ht = getAll('#container .inner ul li .xi-heart-o');
     $add = getAll('#container .inner ul li .xi-cart-add');
+    $jjimCart = get('.jjim')
+    $incre = getAll('#container .cart_box ul .incre');
+    $redu = getAll('#container .cart_box ul .redu');
 };
 function show() {
+    $ul.innerHTML = ''
     for (let i = 0; i < list.length; i++) {
         let li = document.createElement('li');
         li.dataset.id = i;
@@ -56,68 +69,109 @@ function show() {
         <i class="xi-cart-add"></i>
         `
         $ul.append(li)
-        re();
     };
+    re();
+    pic();
+    jjim();
+    // cartPM()
 }
-$li.forEach((element, idx) => {
-    element.addEventListener('mouseenter', e => {
-        e.currentTarget.firstElementChild.setAttribute('src', `images/img${idx}-1.jpg`);
-        e.currentTarget.firstElementChild.style.transition = "0.3s";
+function pic() {
+    $li.forEach((element, idx) => {
+        element.addEventListener('mouseenter', e => {
+            e.currentTarget.firstElementChild.setAttribute('src', `images/img${idx}-1.jpg`);
+            e.currentTarget.firstElementChild.style.transition = "0.3s";
+        })
+        element.addEventListener('mouseleave', e => {
+            e.currentTarget.firstElementChild.setAttribute('src', `images/img${idx}-0.jpg`);
+        })
     })
-    element.addEventListener('mouseleave', e => {
-        e.currentTarget.firstElementChild.setAttribute('src', `images/img${idx}-0.jpg`);
-    })
-})
-
+}
 // JJIM
-let idList = []
-$ht.forEach(elemet => {
-    elemet.addEventListener('click', e => {
-        if (e.currentTarget.classList.contains('xi-heart-o')) {
-            e.currentTarget.classList.remove('xi-heart-o');
-            e.currentTarget.classList.add('xi-heart');
-            let id = e.target.parentElement.dataset.id;
-            idList.push(id)
-        } else {
-            e.currentTarget.classList.remove('xi-heart');
-            e.currentTarget.classList.add('xi-heart-o');
-            let id = e.target.parentElement.dataset.id;
-            idList = idList.filter((ele) => ele !== id)
-        }
-    })
-});
+function jjim() {
+    $ht.forEach(elemet => {
+        elemet.addEventListener('click', e => {
+            if (e.currentTarget.classList.contains('xi-heart-o')) {
+                e.currentTarget.classList.remove('xi-heart-o');
+                e.currentTarget.classList.add('xi-heart');
+                let id = e.target.parentElement.dataset.id;
+                idList.push(id)
+            } else {
+                e.currentTarget.classList.remove('xi-heart');
+                e.currentTarget.classList.add('xi-heart-o');
+                let id = e.target.parentElement.dataset.id;
+                idList = idList.filter((ele) => ele !== id)
+            }
+        })
+    });
+}
 
 $jjimCart.addEventListener('click', e => {
     for (let i = 0; i < idList.length; i++) {
         list[idList[i]].heart = true;
-        console.log(list);
     }
-    list.forEach(ele => {
-        if (ele.heart) {
-            ele.stock--
-            ele.cartStock++
+    deduList = idList.filter(item => !cartList.includes(item));
+    if (deduList.length != 0) {
+        for (let i = 0; i < deduList.length; i++) {
+            list[deduList[i]].stock--;
+            list[deduList[i]].cartStock++;
             let li = document.createElement('li');
+            li.dataset.id = list[deduList[i]].id
             li.innerHTML = `
-            <img src="images/img${ele.id}-0.jpg" alt="">
+            <img src="images/img${list[deduList[i]].id}-0.jpg" alt="">
             <button class="incre"><i class="xi-angle-up"></i></button>
             <button class="redu"><i class="xi-angle-down"></i></button>
-            <span>${ele.cartStock}</span>
+            <span>${list[deduList[i]].cartStock}</span>
             <button class="remove"><i class="xi-cart-remove"></i></button>
             `
             $cartUl.append(li)
-            console.log(list);
+            list[deduList[i]].heart = false;
         }
-        // heart remove
-        let heartElement = document.querySelector('.xi-heart');
-        if (heartElement) {
-            heartElement.classList.remove('xi-heart');
-            heartElement.classList.add('xi-heart-o');
-        }
-        // heart state false
-        ele.heart = false;
-    })
+        idList = []
+        cartList = []
+        deduList = []
+    } else {
+        idList = []
+        cartList = []
+        deduList = []
+    }
+    // heart remove
+    let heartElement = document.querySelector('.xi-heart');
+    if (heartElement) {
+        heartElement.classList.remove('xi-heart');
+        heartElement.classList.add('xi-heart-o');
+    }
+    // heart state false
+    idList = []
+
+    let cartLi = getAll('#container .cart_box ul li')
+    cartLi.forEach(ele => {
+        cartList.push(ele.dataset.id)
+    });
+    cartList = cartList.filter((value, index, self) => self.indexOf(value) === index);
     show();
 })
+
+// cart +/-
+// function cartPM() {
+//     $incre.forEach(ele => {
+//         ele.addEventListener('click',e=>{
+//             let id = ele.parentElement.dataset.id
+//             list[id].stock--
+//             list[id].cartStock++
+//             ele.nextElementSibling.nextElementSibling.textContent=list[id].cartStock;
+//             show()
+//         })
+//     });
+// }
+$incre.forEach(ele => {
+    ele.addEventListener('click',e=>{
+        let id = ele.parentElement.dataset.id
+        list[id].stock--
+        list[id].cartStock++
+        ele.nextElementSibling.nextElementSibling.textContent=list[id].cartStock;
+        show()
+    })
+});
 
 // more btn
 $more.addEventListener('click', e => {
