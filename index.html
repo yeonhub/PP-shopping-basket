@@ -10,6 +10,7 @@
         #wrap {
             width: 100%;
             min-width: 1600px;
+            display: none;
         }
 
         .inner {
@@ -24,6 +25,7 @@
         .on a {
             color: red;
         }
+
         #header {
             width: 100%;
         }
@@ -118,13 +120,13 @@
             height: 1260px;
         }
 
-        #container .inner ul {
+        #container .inner .ul_box ul {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
         }
 
-        #container .inner ul li {
+        #container .inner .ul_box ul li {
             margin: 20px;
             width: 400px;
             height: 600px;
@@ -132,30 +134,28 @@
             padding: 0;
         }
 
-        #container .inner ul li img {
+        #container .inner .ul_box ul li img {
             width: 400px;
             display: block;
             margin: auto;
             border-radius: 20px;
             cursor: pointer;
         }
-        /* #container .inner ul li img:hover {
-            transition: 0.3s;
-        } */
 
-        #container .inner ul li p {
+
+        #container .inner .ul_box ul li p {
             text-align: center;
             margin: 10px;
             font-size: 35px;
         }
 
-        #container .inner ul li span {
+        #container .inner .ul_box ul li span {
             display: block;
             font-size: 25px;
             margin-left: 300px;
         }
 
-        #container .inner ul li .ori_p {
+        #container .inner .ul_box ul li .ori_p {
             position: absolute;
             bottom: 70px;
             left: 20px;
@@ -167,7 +167,7 @@
             text-decoration: line-through;
         }
 
-        #container .inner ul li .sal_p {
+        #container .inner .ul_box ul li .sal_p {
             font-size: 35px;
             font-weight: 700;
             margin-left: 40px;
@@ -175,18 +175,21 @@
             line-height: 2.5;
         }
 
-        #container .inner ul li i {
+        #container .inner .ul_box ul li i {
             font-size: 50px;
             margin-left: 20px;
             cursor: pointer;
         }
-        #container .inner ul li .xi-heart-o:hover {
+
+        #container .inner .ul_box ul li .xi-heart-o:hover {
             color: red;
         }
+
         .xi-heart {
             color: red;
         }
-        #container .inner ul li .xi-cart-add:hover {
+
+        #container .inner .ul_box ul li .xi-cart-add:hover {
             color: blue;
         }
 
@@ -228,9 +231,8 @@
             border-bottom: 2px solid #000;
         }
 
-        #container .cart_box ul {
-            
-        }
+        #container .cart_box ul {}
+
         #container .cart_box ul li::after {
             content: '';
             display: inline-block;
@@ -242,9 +244,11 @@
             left: 50%;
             transform: translateX(-50%);
         }
+
         #container .cart_box ul li:last-child::after {
             display: none;
         }
+
         #container .cart_box ul li {
             position: relative;
             width: 200px;
@@ -256,27 +260,33 @@
             background: white;
             cursor: pointer;
         }
+
         #container .cart_box ul li button i {
             font-size: 20px;
         }
+
         #container .cart_box ul li .redu {
             position: absolute;
             top: 60px;
             right: 25px;
         }
+
         #container .cart_box ul li .incre {
             position: absolute;
             top: 10px;
             right: 25px;
         }
+
         #container .cart_box ul li .remove i {
             font-size: 25px;
         }
+
         #container .cart_box ul li .remove {
             position: absolute;
             top: 85px;
             right: 22px;
         }
+
         #container .cart_box ul li .remove:hover i {
             color: red;
         }
@@ -297,6 +307,7 @@
             right: 34px;
             font-size: 25px;
         }
+
         #container .cart_box .btn button {
             width: 80px;
             height: 30px;
@@ -305,6 +316,7 @@
             border-radius: 10px;
             font-size: 15px;
         }
+
         #container .cart_box .btn .jjim {
             display: block;
             width: 170px;
@@ -312,20 +324,163 @@
             margin: auto;
             margin-bottom: 10px;
         }
+
         #container .cart_box .btn .rem {}
 
 
-        #footer {
-        }
+        #footer {}
 
         #footer .inner {
             height: 250px;
+        }
+
+        body {
+            position: relative;
+        }
+
+        .bg {
+            display: none;
+            z-index: 100;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background: black;
+            opacity: 0.8;
+        }
+
+        .loading {
+            display: none;
+            width: 400px;
+            border-radius: 10%;
+            height: 300px;
+            position: fixed;
+            z-index: 150;
+            background: white;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+        }
+
+        .loading p {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 30px;
+        }
+
+        .loading img {
+            display: block;
+            margin: 0 auto;
+        }
+        #wrapB {}
+        #container {}
+        #container .cartUl_box {}
+        #container .cartUl_box ul {
+            display: block;
+        }
+        #container .cartUl_box ul li {
+            display: flex;
+            padding: 10px;
+            box-sizing: border-box;
+            width: 100%;
+            height: 170px;
+            background: lightgray;
+            margin: 10px;
+        }
+        #container .cartUl_box ul li .xi-check-circle-o {
+            font-size: 40px;
+            margin: auto 40px;
+        }
+        #container .cartUl_box ul li img {
+            width: 150px;
+            height: 150px;
+            margin: auto 20px;
+        }
+        #container .cartUl_box ul li p {
+            width: 400px;
+            font-size: 30px;
+            margin: auto 0;
+            margin-left: 30px;
+        }
+        #container .cartUl_box ul li .stock {
+            width: 200px;
+            height: 60px;
+            background: white;
+            display: flex;
+            margin: auto 0;
+        }
+        #container .cartUl_box ul li .increB {
+            font-size: 20px;
+            background: white;
+            margin: auto 0;
+            width: 50px;
+            height: 50px;
+            border: none;
+        }
+        #container .cartUl_box ul li span {
+            background: white;
+            text-align: center;
+            width: 80px;
+            height: 50px;
+            margin: auto 10px;
+            font-size: 30px;
+        }
+        #container .cartUl_box ul li .reduB {
+            font-size: 20px;
+            margin: auto 0;
+            background: white;
+            width: 50px;
+            height: 50px;
+            border: none;
+        }
+        #container .cartUl_box ul li .price {
+            margin: auto 0;
+        }
+        #container .cartUl_box ul li .ori_pB {
+            display: block;
+            color: gray;
+            text-decoration: line-through;
+            width: 300px;
+            text-align: right;
+            font-size: 20px;
+        }
+        #container .cartUl_box ul li .sal_pB {
+            display: block;
+            width: 300px;
+            text-align: right;
+            font-size: 25px;
+        }
+        #container .cartUl_box ul li .xi-close {
+            margin: auto;
+            font-size: 30px;
+        }
+        #container .cartUl_box .order {
+            margin: 40px;
+        }
+        #container .cartUl_box .order .price {
+            font-size: 30px;
+            text-align: center;
+            margin: 100px 0;
+        }
+        #container .cartUl_box .order .btn {
+            text-align: center;
+        }
+        #container .cartUl_box .order .btn button {
+            margin: 20px;
+            width: 300px;
+            height: 70px;
+            border: none;
+            font-size: 25px;
+            border-radius: 10px;
         }
     </style>
 </head>
 
 <body>
-
+    <div class="bg"></div>
+    <div class="loading">
+        <p>장바구니로 이동중</p>
+        <img src="images/spinner.gif" alt="">
+    </div>
     <div id="wrap">
         <header id="header">
             <div class="inner">
@@ -560,10 +715,106 @@
         <footer id="footer">
             <div class="inner"></div>
         </footer>
+    </div>
+    <div id="wrapB">
+        <header id="header">
+            <div class="inner">
+                <h1>
+                    <a href="index.html">
+                        <h2>YEON.shop</h2>
+                    </a>
+                </h1>
+                <ul class="top-menu">
+                    <li><a href="#">로그인</a></li>
+                    <li class="on"><a href="#">장바구니</a></li>
+                </ul>
+                <nav class="nav">
+                    <ul class="gnb">
+                        <li><a href="#">베스트</a></li>
+                        <li><a href="#">NEW</a></li>
+                        <li><a href="#">할인</a></li>
+                        <li><a href="#">오늘만 특가</a></li>
+                    </ul>
+                </nav>
+        </header>
+        <main id="container">
+            <div class="inner">
+                <h3>
+                    <i class="xi-cart-o"></i>
+                    장바구니
+                    <i class="xi-cart-o"></i>
+                </h3>
+                <div class="cartUl_box">
+                    <ul>
+                        <li>
+                            <i class="xi-check-circle-o"></i>
+                            <img src="images/img0-0.jpg" alt="">
+                            <p>초록초록치마</p>
+                            <div class="stock">
 
-        <script src="main.js">
-            'use strict';
-        </script>
+                                <button class="increB"><i class="xi-angle-up"></i></button>
+                                <span>3</span>
+                                <button class="reduB"><i class="xi-angle-down"></i></button>
+                            </div>
+                            <div class="price">
+                                <strong class="ori_pB">30,000원</strong>
+                                <strong class="sal_pB">30,000원</strong>
+                            </div>
+                            <i class="xi-close"></i>
+                        </li>                        <li>
+                            <i class="xi-check-circle-o"></i>
+                            <img src="images/img0-0.jpg" alt="">
+                            <p>초록초록치마</p>
+                            <div class="stock">
+
+                                <button class="increB"><i class="xi-angle-up"></i></button>
+                                <span>3</span>
+                                <button class="reduB"><i class="xi-angle-down"></i></button>
+                            </div>
+                            <div class="price">
+                                <strong class="ori_pB">30,000원</strong>
+                                <strong class="sal_pB">30,000원</strong>
+                            </div>
+                            <i class="xi-close"></i>
+                        </li>
+                        <li>
+                            <i class="xi-check-circle-o"></i>
+                            <img src="images/img0-0.jpg" alt="">
+                            <p>초록초록치마</p>
+                            <div class="stock">
+
+                                <button class="increB"><i class="xi-angle-up"></i></button>
+                                <span>3</span>
+                                <button class="reduB"><i class="xi-angle-down"></i></button>
+                            </div>
+                            <div class="price">
+                                <strong class="ori_pB">30,000원</strong>
+                                <strong class="sal_pB">30,000원</strong>
+                            </div>
+                            <i class="xi-close"></i>
+                        </li>
+                    </ul>
+                    <div class="order">
+                        <p class="price">상품 금액  100,000원 + 배송비 3,000원 = 103,000원</p>
+                        <p class="btn">
+                            <button>선택 상품 주문</button>
+                            <button>전체 상품 주문</button>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+    </div>
+    <footer id="footer">
+        <div class="inner"></div>
+    </footer>
+    </div>
+
+    <script src="main.js">
+        'use strict';
+    </script>
 </body>
 
 </html>

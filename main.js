@@ -15,7 +15,12 @@ let $ht = getAll('#container .inner ul li .xi-heart-o');
 let $add = getAll('#container .inner ul li .xi-cart-add');
 let $incre = getAll('#container .cart_box ul .incre');
 let $redu = getAll('#container .cart_box ul .redu');
-let $jjimCart = get('.jjim')
+let $jjimCart = get('#container .cart_box .jjim');
+let $rem = get('#container .cart_box .rem')
+let $ord = get('#container .cart_box .ord')
+let $wrap = get('#wrap')
+let $bg = get('.bg')
+let $loading = get('.loading')
 let uh = 1250;
 let idList = []
 let cartList = []
@@ -51,10 +56,9 @@ function re() {
     $ht = getAll('#container .inner ul li .xi-heart-o');
     $add = getAll('#container .inner ul li .xi-cart-add');
     $jjimCart = get('.jjim')
-    $incre = getAll('#container .cart_box ul .incre');
-    $redu = getAll('#container .cart_box ul .redu');
 };
 function show() {
+    console.log('show');
     $ul.innerHTML = ''
     for (let i = 0; i < list.length; i++) {
         let li = document.createElement('li');
@@ -73,7 +77,8 @@ function show() {
     re();
     pic();
     jjim();
-    // cartPM()
+
+    console.log('showEnd');
 }
 function pic() {
     $li.forEach((element, idx) => {
@@ -104,6 +109,50 @@ function jjim() {
         })
     });
 }
+// cart +/-
+function cartPM(incBtn, redBtn) {
+    incBtn.addEventListener('click', e => {
+        console.log('cartP');
+        let id = e.currentTarget.parentElement.dataset.id
+        console.log(id);
+        if (list[id].stock !== 0) {
+            list[id].stock--
+            list[id].cartStock++
+            e.currentTarget.nextElementSibling.nextElementSibling.textContent = list[id].cartStock;
+            show();
+            console.log('cartPEnd');
+        }
+    })
+    redBtn.addEventListener('click', e => {
+        console.log('cartM');
+        let id = e.currentTarget.parentElement.dataset.id
+        if (list[id].cartStock !== 1) {
+            list[id].stock++
+            list[id].cartStock--
+            e.currentTarget.nextElementSibling.textContent = list[id].cartStock;
+            show()
+            console.log('cartMEnd');
+        }
+    })
+}
+function cartRemove(remBtn) {
+    remBtn.addEventListener('click', e => {
+        let id = e.currentTarget.parentElement.dataset.id
+        list[id].stock += list[id].cartStock;
+        list[id].cartStock = 0;
+        e.currentTarget.parentElement.remove()
+        idList = []
+        cartList = []
+        deduList = []
+        list.forEach(ele => {
+            ele.heart = false;
+            ele.cart = false;
+        })
+        console.log(list);
+        show()
+        console.log('cartMEnd');
+    })
+}
 
 $jjimCart.addEventListener('click', e => {
     for (let i = 0; i < idList.length; i++) {
@@ -115,15 +164,32 @@ $jjimCart.addEventListener('click', e => {
             list[deduList[i]].stock--;
             list[deduList[i]].cartStock++;
             let li = document.createElement('li');
+            let incBtn = document.createElement('button');
+            let redBtn = document.createElement('button');
+            let span = document.createElement('span');
+            let remBtn = document.createElement('button');
             li.dataset.id = list[deduList[i]].id
             li.innerHTML = `
             <img src="images/img${list[deduList[i]].id}-0.jpg" alt="">
-            <button class="incre"><i class="xi-angle-up"></i></button>
-            <button class="redu"><i class="xi-angle-down"></i></button>
-            <span>${list[deduList[i]].cartStock}</span>
-            <button class="remove"><i class="xi-cart-remove"></i></button>
             `
+            incBtn.classList.add('incre')
+            redBtn.classList.add('redu')
+            span.innerHTML = list[deduList[i]].cartStock
+            remBtn.classList.add('remove')
+
+            incBtn.innerHTML = `<i class="xi-angle-up"></i>`
+            redBtn.innerHTML = `<i class="xi-angle-down"></i>`
+            remBtn.innerHTML = `<i class="xi-cart-remove"></i>`
+
             $cartUl.append(li)
+            li.append(incBtn)
+            li.append(redBtn)
+            li.append(span)
+            li.append(remBtn)
+
+            cartPM(incBtn, redBtn)
+            cartRemove(remBtn)
+
             list[deduList[i]].heart = false;
         }
         idList = []
@@ -151,27 +217,38 @@ $jjimCart.addEventListener('click', e => {
     show();
 })
 
-// cart +/-
-// function cartPM() {
-//     $incre.forEach(ele => {
-//         ele.addEventListener('click',e=>{
-//             let id = ele.parentElement.dataset.id
-//             list[id].stock--
-//             list[id].cartStock++
-//             ele.nextElementSibling.nextElementSibling.textContent=list[id].cartStock;
-//             show()
-//         })
-//     });
-// }
-$incre.forEach(ele => {
-    ele.addEventListener('click',e=>{
-        let id = ele.parentElement.dataset.id
-        list[id].stock--
-        list[id].cartStock++
-        ele.nextElementSibling.nextElementSibling.textContent=list[id].cartStock;
+$rem.addEventListener('click', e => {
+    let $cartLis = getAll('#container .cart_box ul li')
+    if ($cartLis.length) {
+        $cartLis.forEach(ele => {
+            ele.remove();
+        })
+        list.forEach(ele => {
+            ele.heart = false;
+            ele.cart = false;
+            ele.stock += ele.cartStock;
+            ele.cartStock = 0;
+        });
+        idList = []
+        cartList = []
+        deduList = []
+        list.forEach(ele => {
+            ele.heart = false;
+            ele.cart = false;
+        })
         show()
-    })
-});
+    }
+})
+$ord.addEventListener('click', e => {
+    $bg.style.display = 'block'
+    $loading.style.display = 'block'
+    setTimeout(() => {
+        $bg.style.display = 'none'
+        $loading.style.display = 'none'
+        $wrap.style.display = 'none'
+    }, 2000);
+    console.log(list);
+})
 
 // more btn
 $more.addEventListener('click', e => {
