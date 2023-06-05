@@ -10,6 +10,11 @@
         #wrap {
             width: 100%;
             min-width: 1600px;
+            /* display: none; */
+        }
+        #wrapB {
+            width: 100%;
+            min-width: 1600px;
             display: none;
         }
 
@@ -18,11 +23,11 @@
             margin: auto;
             position: relative;
             box-sizing: border-box;
-            background: lightb lue;
+            /* background: lightblue; */
         }
 
         /* 공통 inner */
-        .on a {
+        .on {
             color: red;
         }
 
@@ -72,7 +77,7 @@
             right: -10px;
         }
 
-        #header .inner ul.top-menu li a {
+        #header .inner ul.top-menu li {
             font-size: 20px;
         }
 
@@ -94,7 +99,7 @@
             margin-right: 75px;
         }
 
-        #header .inner nav.nav ul.gnb li a {
+        #header .inner nav.nav ul.gnb li {
             font-size: 20px;
             font-weight: 700;
         }
@@ -315,6 +320,7 @@
             background: white;
             border-radius: 10px;
             font-size: 15px;
+            cursor: pointer;
         }
 
         #container .cart_box .btn .jjim {
@@ -323,12 +329,8 @@
             background: lightpink;
             margin: auto;
             margin-bottom: 10px;
+            cursor: pointer;
         }
-
-        #container .cart_box .btn .rem {}
-
-
-        #footer {}
 
         #footer .inner {
             height: 250px;
@@ -371,8 +373,6 @@
             display: block;
             margin: 0 auto;
         }
-        #wrapB {}
-        #container {}
         #container .cartUl_box {}
         #container .cartUl_box ul {
             display: block;
@@ -389,6 +389,10 @@
         #container .cartUl_box ul li .xi-check-circle-o {
             font-size: 40px;
             margin: auto 40px;
+            cursor: pointer;
+        }
+        #container .cartUl_box ul li .xi-check-circle-o.on {
+            color: tomato;
         }
         #container .cartUl_box ul li img {
             width: 150px;
@@ -415,6 +419,7 @@
             width: 50px;
             height: 50px;
             border: none;
+            cursor: pointer;
         }
         #container .cartUl_box ul li span {
             background: white;
@@ -431,6 +436,7 @@
             width: 50px;
             height: 50px;
             border: none;
+            cursor: pointer;
         }
         #container .cartUl_box ul li .price {
             margin: auto 0;
@@ -452,6 +458,7 @@
         #container .cartUl_box ul li .xi-close {
             margin: auto;
             font-size: 30px;
+            cursor: pointer;
         }
         #container .cartUl_box .order {
             margin: 40px;
@@ -463,6 +470,7 @@
         }
         #container .cartUl_box .order .btn {
             text-align: center;
+            cursor: pointer;
         }
         #container .cartUl_box .order .btn button {
             margin: 20px;
@@ -471,6 +479,7 @@
             border: none;
             font-size: 25px;
             border-radius: 10px;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -485,9 +494,7 @@
         <header id="header">
             <div class="inner">
                 <h1>
-                    <a href="index.html">
                         <h2>YEON.shop</h2>
-                    </a>
                 </h1>
                 <ul class="top-menu">
                     <li><a href="#">로그인</a></li>
@@ -495,10 +502,10 @@
                 </ul>
                 <nav class="nav">
                     <ul class="gnb">
-                        <li><a href="#">베스트</a></li>
-                        <li><a href="#">NEW</a></li>
-                        <li><a href="#">할인</a></li>
-                        <li class="on"><a href="#">오늘만 특가</a></li>
+                        <li>베스트</li>
+                        <li>NEW</li>
+                        <li>할인</li>
+                        <li class="on">오늘만 특가</li>
                     </ul>
                 </nav>
             </div>
@@ -720,20 +727,18 @@
         <header id="header">
             <div class="inner">
                 <h1>
-                    <a href="index.html">
                         <h2>YEON.shop</h2>
-                    </a>
                 </h1>
                 <ul class="top-menu">
                     <li><a href="#">로그인</a></li>
-                    <li class="on"><a href="#">장바구니</a></li>
+                    <li class="on">장바구니</li>
                 </ul>
                 <nav class="nav">
                     <ul class="gnb">
-                        <li><a href="#">베스트</a></li>
-                        <li><a href="#">NEW</a></li>
-                        <li><a href="#">할인</a></li>
-                        <li><a href="#">오늘만 특가</a></li>
+                        <li>베스트</li>
+                        <li>NEW</li>
+                        <li>할인</li>
+                        <li class="today">오늘만 특가</li>
                     </ul>
                 </nav>
         </header>
@@ -746,12 +751,11 @@
                 </h3>
                 <div class="cartUl_box">
                     <ul>
-                        <li>
+                        <!-- <li>
                             <i class="xi-check-circle-o"></i>
                             <img src="images/img0-0.jpg" alt="">
                             <p>초록초록치마</p>
                             <div class="stock">
-
                                 <button class="increB"><i class="xi-angle-up"></i></button>
                                 <span>3</span>
                                 <button class="reduB"><i class="xi-angle-down"></i></button>
@@ -761,38 +765,7 @@
                                 <strong class="sal_pB">30,000원</strong>
                             </div>
                             <i class="xi-close"></i>
-                        </li>                        <li>
-                            <i class="xi-check-circle-o"></i>
-                            <img src="images/img0-0.jpg" alt="">
-                            <p>초록초록치마</p>
-                            <div class="stock">
-
-                                <button class="increB"><i class="xi-angle-up"></i></button>
-                                <span>3</span>
-                                <button class="reduB"><i class="xi-angle-down"></i></button>
-                            </div>
-                            <div class="price">
-                                <strong class="ori_pB">30,000원</strong>
-                                <strong class="sal_pB">30,000원</strong>
-                            </div>
-                            <i class="xi-close"></i>
-                        </li>
-                        <li>
-                            <i class="xi-check-circle-o"></i>
-                            <img src="images/img0-0.jpg" alt="">
-                            <p>초록초록치마</p>
-                            <div class="stock">
-
-                                <button class="increB"><i class="xi-angle-up"></i></button>
-                                <span>3</span>
-                                <button class="reduB"><i class="xi-angle-down"></i></button>
-                            </div>
-                            <div class="price">
-                                <strong class="ori_pB">30,000원</strong>
-                                <strong class="sal_pB">30,000원</strong>
-                            </div>
-                            <i class="xi-close"></i>
-                        </li>
+                        </li>     -->
                     </ul>
                     <div class="order">
                         <p class="price">상품 금액  100,000원 + 배송비 3,000원 = 103,000원</p>
