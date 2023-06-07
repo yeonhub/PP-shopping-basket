@@ -10,7 +10,7 @@ let $more = get('.more');
 let $ul_box = get('#container .inner .ul_box');
 let $ul = get('#container .inner ul');
 let $cartUl = get('#container .cart_box ul');
-let $li = getAll('#container .inner ul li');
+let $li = getAll('#wrap #container .inner ul li');
 let $ht = getAll('#container .inner ul li .xi-heart-o');
 let $add = getAll('#container .inner ul li .xi-cart-add');
 let $incre = getAll('#container .cart_box ul .incre'); // +
@@ -59,7 +59,7 @@ function re() {
     $ul_box = get('#container .inner .ul_box');
     $ul = get('#container .inner ul');
     $cartUl = get('#container .cart_box ul');
-    $li = getAll('#container .inner ul li');
+    $li = getAll('#wrap #container .inner ul li');
     $ht = getAll('#container .inner ul li .xi-heart-o');
     $add = getAll('#container .inner ul li .xi-cart-add');
     $jjimCart = get('.jjim')
@@ -291,7 +291,7 @@ function add() {
 $ord.addEventListener('click', e => {
     $bg.style.display = 'block'
     $loading.style.display = 'block'
-    
+
     setTimeout(() => {
         $bg.style.display = 'none'
         $loading.style.display = 'none'
@@ -376,6 +376,11 @@ function cartRemoveC(remBtnC) {
         cartList = cartList.filter(item => item !== id);
     })
 }
+function chkC(chkBtnC) {
+    chkBtnC.addEventListener('click', e => {
+        e.currentTarget.classList.toggle('on')
+    })
+}
 function showCart() {
     $cartpageUl.innerHTML = ''
     cartList.forEach((ele, idx) => {
@@ -392,7 +397,7 @@ function showCart() {
 
         chkBtnC.classList.add('xi-check-circle-o')
         liC.append(chkBtnC)
-        liC.innerHTML += `
+        liC.innerHTML = `
         <img src="images/img${list[idC].id}-0.jpg" alt="">
         <p>${list[idC].name}</p>
         `
@@ -411,16 +416,18 @@ function showCart() {
 
         price.classList.add('price')
         price.innerHTML = `
-        <strong class="ori_pB">${list[idC].price}원</strong>
-        <strong class="sal_pB">${list[idC].price * 0.9}원</strong>
+        <strong class="ori_pB">${priceToString(list[idC].price)}원</strong>
+        <strong class="sal_pB">${priceToString(list[idC].price * 0.9)}원</strong>
         `
         liC.append(price)
         liC.append(remBtnC)
         liC.dataset.id = list[idC].id
+        liC.insertBefore(chkBtnC, liC.firstChild);
         $cartpageUl.append(liC)
 
         cartPMC(incBtnC, redBtnC)
         cartRemoveC(remBtnC)
+        chkC(chkBtnC)
     })
 }
 
@@ -496,10 +503,6 @@ $today.addEventListener('click', e => {
     show();
     window.scrollTo(0, 0);
 })
+// function totalPrice(){
 
-$chk.forEach(ele=>{
-    ele.addEventListener('click',e=>{
-        console.log(1);
-        e.currentTarget.classList.toggle('on')
-    })
-})
+// }
