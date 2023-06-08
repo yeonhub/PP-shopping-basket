@@ -31,6 +31,7 @@ let $today = get('#wrapB #header .inner .nav .gnb .today')
 let $logo = get('#wrapB #header .inner h2')
 let $cartpageUl = get('#wrapB #container .cartUl_box ul')
 let $chk = getAll('#wrapB #container .cartUl_box ul li .xi-check-circle-o')
+let $price = get('#wrapB .inner .order .price')
 
 
 let list = [
@@ -428,6 +429,20 @@ function showCart() {
         cartPMC(incBtnC, redBtnC)
         cartRemoveC(remBtnC)
         chkC(chkBtnC)
+
+        let cartItems = list.filter(item => item.cart === true);
+        let prices = cartItems.map(item => item.price);
+        let cartStocks = cartItems.map(item => item.cartStock);
+        let total = 0;
+
+        console.log(prices);
+        console.log(cartStocks);
+        for (let i = 0; i < prices.length; i++) {
+           total += price[i]*cartStocks[i]
+        }
+
+        $price.innerHTML=`상품 금액 ${total}원 + 배송비 3,000원 = ${total+3000}원`
+
     })
 }
 
