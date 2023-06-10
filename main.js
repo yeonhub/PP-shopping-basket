@@ -313,6 +313,19 @@ $more.addEventListener('click', e => {
     }
     $ul_box.style.height = uh + 'px';
 });
+function totalPrice(){
+    let cartItems = list.filter(item => item.cart === true);
+    let prices = cartItems.map(item => item.price);
+    let cartStocks = cartItems.map(item => item.cartStock);
+    let total = 0;
+
+    for (let i = 0; i < prices.length; i++) {
+        total += (prices[i]*0.9) * cartStocks[i]
+    }
+    if(prices.length===0) total=0;
+
+    $price.innerHTML = `상품 금액 ${priceToString(total)}원 + 배송비 3,000원 = ${priceToString(total + 3000)}원`
+}
 
 function cartPMC(incBtnC, redBtnC) {
     incBtnC.addEventListener('click', e => {
@@ -375,6 +388,7 @@ function cartRemoveC(remBtnC) {
         list[id].heart = false
         e.currentTarget.parentElement.remove()
         cartList = cartList.filter(item => item !== id);
+        totalPrice()
     })
 }
 function chkC(chkBtnC) {
@@ -430,20 +444,9 @@ function showCart() {
         cartRemoveC(remBtnC)
         chkC(chkBtnC)
 
-        let cartItems = list.filter(item => item.cart === true);
-        let prices = cartItems.map(item => item.price);
-        let cartStocks = cartItems.map(item => item.cartStock);
-        let total = 0;
-
-        console.log(prices);
-        console.log(cartStocks);
-        for (let i = 0; i < prices.length; i++) {
-           total += price[i]*cartStocks[i]
-        }
-
-        $price.innerHTML=`상품 금액 ${total}원 + 배송비 3,000원 = ${total+3000}원`
 
     })
+    totalPrice()
 }
 
 $logo.addEventListener('click', e => {
