@@ -389,7 +389,7 @@ function cartRemoveC(remBtnC) {
         e.currentTarget.parentElement.remove()
         cartList = cartList.filter(item => item !== id);
         totalPrice()
-        if (cartList.length === 0) $cartpageUl.innerHTML = '<li class="t"><img src="images/T.png" alt="텅"></li>'
+        if (cartList.length === 0) $cartpageUl.innerHTML = '<li class="t"><img class="timg" src="images/T.png" alt="텅"></li>'
     })
 }
 function chkC(chkBtnC) {
@@ -399,7 +399,7 @@ function chkC(chkBtnC) {
 }
 function showCart() {
     $cartpageUl.innerHTML = ''
-    if (cartList.length === 0) $cartpageUl.innerHTML = '<li class="t"><img class="t" src="images/T.png" alt="텅"></li>'
+    if (cartList.length === 0) $cartpageUl.innerHTML = '<li class="t"><img class="timg" src="images/T.png" alt="텅"></li>'
     cartList.forEach((ele, idx) => {
         let liC = document.createElement('li');
         let chkBtnC = document.createElement('i');
