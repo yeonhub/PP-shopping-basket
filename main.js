@@ -313,16 +313,16 @@ $more.addEventListener('click', e => {
     }
     $ul_box.style.height = uh + 'px';
 });
-function totalPrice(){
+function totalPrice() {
     let cartItems = list.filter(item => item.cart === true);
     let prices = cartItems.map(item => item.price);
     let cartStocks = cartItems.map(item => item.cartStock);
     let total = 0;
 
     for (let i = 0; i < prices.length; i++) {
-        total += (prices[i]*0.9) * cartStocks[i]
+        total += (prices[i] * 0.9) * cartStocks[i]
     }
-    if(prices.length===0) total=0;
+    if (prices.length === 0) total = 0;
 
     $price.innerHTML = `상품 금액 ${priceToString(total)}원 + 배송비 3,000원 = ${priceToString(total + 3000)}원`
 }
@@ -389,6 +389,7 @@ function cartRemoveC(remBtnC) {
         e.currentTarget.parentElement.remove()
         cartList = cartList.filter(item => item !== id);
         totalPrice()
+        if (cartList.length === 0) $cartpageUl.innerHTML = '<li class="t"><img src="images/T.png" alt="텅"></li>'
     })
 }
 function chkC(chkBtnC) {
@@ -398,6 +399,7 @@ function chkC(chkBtnC) {
 }
 function showCart() {
     $cartpageUl.innerHTML = ''
+    if (cartList.length === 0) $cartpageUl.innerHTML = '<li class="t"><img class="t" src="images/T.png" alt="텅"></li>'
     cartList.forEach((ele, idx) => {
         let liC = document.createElement('li');
         let chkBtnC = document.createElement('i');
