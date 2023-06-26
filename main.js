@@ -244,10 +244,7 @@ $rem.addEventListener('click', e => {
 function add() {
     $add.forEach(ele => {
         ele.addEventListener('click', e => {
-
             let id = e.currentTarget.parentElement.dataset.id;
-
-
             if (cartList.includes(id)) {
                 return
             } else if (list[id].stock !== 0) {
@@ -282,9 +279,7 @@ function add() {
                 cartRemove(remBtn)
                 cartList.push(id)
                 show();
-
             }
-
         })
     })
 }
