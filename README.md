@@ -39,6 +39,8 @@ let list = [
 ```
 
 찜, 장바구니 상태변수 사용, 수량, 장바구니 수량 두 가지 사용
+<br>
+<br>
 
 #### 2) 장바구니 추가/삭제
 
@@ -127,6 +129,8 @@ $rem.addEventListener('click', e => {
     }
 })
 ```
+<br>
+<br>
 
 #### 3) 찜 기능
 
@@ -219,6 +223,8 @@ $jjimCart.addEventListener('click', e => {
 
 })
 ```
+<br>
+<br>
 
 #### 4) 수량 증감 기능
 
@@ -256,6 +262,8 @@ function cartPM(incBtn, redBtn) {
     })
 }
 ```
+<br>
+<br>
 
 #### 5) 장바구니 페이지
 
