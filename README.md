@@ -24,7 +24,7 @@
 
 ## 기능 구현
 
-#### 1) 객체 데이터 사용
+### 1) 객체 데이터 사용
 
 ```javascript
 let list = [
@@ -39,10 +39,10 @@ let list = [
 ```
 
 찜, 장바구니 상태변수 사용, 수량, 장바구니 수량 두 가지 사용
-<br>
-<br>
+`<br>`
+`<br>`
 
-#### 2) 장바구니 추가/삭제
+### 2) 장바구니 추가/삭제
 
 <img src="./mdimages/incart.gif">
 장바구니에 담기 버튼을 누르면 해당 버튼의 부모요소를 참조해 장바구니에 추가된다.
@@ -129,10 +129,11 @@ $rem.addEventListener('click', e => {
     }
 })
 ```
+
 <br>
 <br>
 
-#### 3) 찜 기능
+### 3) 찜 기능
 
 <img src="./mdimages/like.gif">
 상품의 하트 버튼을 누르면 찜 기능이 활성화 되며 toggle 방식으로 하트가 바뀐다.
@@ -223,10 +224,11 @@ $jjimCart.addEventListener('click', e => {
 
 })
 ```
+
 <br>
 <br>
 
-#### 4) 수량 증감 기능
+### 4) 수량 증감 기능
 
 <img src="./mdimages/stock.gif">
 현재 남아있는 수량 기준으로 주문 가능한 최대 수량을 넘을 수 없고, 1미만의 수량도 지정할 수 없다.
@@ -262,10 +264,11 @@ function cartPM(incBtn, redBtn) {
     })
 }
 ```
+
 <br>
 <br>
 
-#### 5) 장바구니 페이지
+### 5) 장바구니 페이지
 
 <img src="./mdimages/cart.gif">
 장바구니 페이지에선 장바구니에 담긴 상품과 가격, 수량, 총 금액을 확인할 수 있다.
