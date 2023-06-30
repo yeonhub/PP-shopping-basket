@@ -12,10 +12,9 @@
 [아뜨랑스](https://www.attrangs.co.kr)
 
 ## 프로젝트 기술 스택
-
-* [X] HTML
-* [X] CSS
-* [X] javascript (vanilla js)
+<img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
+<img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white">
+<img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
 
 ## 프로젝트 캡쳐
 
@@ -39,8 +38,9 @@ let list = [
 ```
 
 찜, 장바구니 상태변수 사용, 수량, 장바구니 수량 두 가지 사용
-`<br>`
-`<br>`
+
+<br>
+<br>
 
 ### 2) 장바구니 추가/삭제
 
