@@ -7,6 +7,10 @@
 | FE / design | 이상연 | [@yeonhub](https://github.com/yeonhub) |
 | ----------- | ------ | ----------------------------------- |
 
+## 프로젝트 사이트
+<a href="https://yeonhub.github.io/PP-shopping-basket/" target="_blank"><img src="./mdimages/Yeonshop_logo.png"></a>
+
+
 ## 프로젝트 참고 사이트
 
 [아뜨랑스](https://www.attrangs.co.kr)
@@ -353,3 +357,6 @@ function totalPrice() {
     $price.innerHTML = `상품 금액 ${priceToString(total)}원 + 배송비 3,000원 = ${priceToString(total + 3000)}원`
 }
 ```
+
+
+[def]: ttps://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=blac
