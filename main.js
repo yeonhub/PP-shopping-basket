@@ -518,6 +518,3 @@ $today.addEventListener('click', e => {
     show();
     window.scrollTo(0, 0);
 })
-// function totalPrice(){
-
-// }
