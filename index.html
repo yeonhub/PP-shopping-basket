@@ -29,7 +29,12 @@
 
         /* 공통 inner */
         .on {
+            cursor: pointer;
             color: red;
+        }
+
+        .cursor {
+            cursor: pointer;
         }
 
         #header {
@@ -525,18 +530,18 @@
         <header id="header">
             <div class="inner">
                 <h1>
-                    <h2><img src="images//Yeonshop_logo.png" alt="Yeonshop logo"></h2>
+                    <h2 class="cursor"><img src="images//Yeonshop_logo.png" alt="Yeonshop logo"></h2>
                 </h1>
                 <ul class="top-menu">
                     <li><a href="#">로그인</a></li>
-                    <li><a href="#">장바구니</a></li>
+                    <li class="goOrder"><a href="#">장바구니</a></li>
                 </ul>
                 <nav class="nav">
                     <ul class="gnb">
                         <li>베스트</li>
                         <li>NEW</li>
                         <li>할인</li>
-                        <li class="on">오늘만 특가</li>
+                        <li class="on cursor">오늘만 특가</li>
                     </ul>
                 </nav>
             </div>
@@ -758,7 +763,7 @@
         <header id="header">
             <div class="inner">
                 <h1>
-                    <h2><img src="images//Yeonshop_logo.png" alt="Yeonshop logo"></h2>
+                    <h2 class="cursor"><img src="images//Yeonshop_logo.png" alt="Yeonshop logo"></h2>
                 </h1>
                 <ul class="top-menu">
                     <li><a href="#">로그인</a></li>
@@ -769,7 +774,7 @@
                         <li>베스트</li>
                         <li>NEW</li>
                         <li>할인</li>
-                        <li class="today">오늘만 특가</li>
+                        <li class="today cursor">오늘만 특가</li>
                     </ul>
                 </nav>
         </header>

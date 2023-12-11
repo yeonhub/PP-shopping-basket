@@ -18,6 +18,7 @@ let $redu = getAll('#container .cart_box ul .redu'); // -
 let $jjimCart = get('#container .cart_box .jjim'); // 찜 상품 담기
 let $rem = get('#container .cart_box .rem') // 비우기
 let $ord = get('#container .cart_box .ord') // 주문하기
+let $goOrder = get('#header .inner .top-menu .goOrder') // 장바구니
 let $wrap = get('#wrap')
 let $bg = get('.bg')
 let $loading = get('.loading')
@@ -32,7 +33,6 @@ let $logo = get('#wrapB #header .inner h2')
 let $cartpageUl = get('#wrapB #container .cartUl_box ul')
 let $chk = getAll('#wrapB #container .cartUl_box ul li .xi-check-circle-o')
 let $price = get('#wrapB .inner .order .price')
-
 
 let list = [
     { id: 0, name: '슬릿 스커트', price: 32000, stock: 11, heart: false, cart: false, cartStock: 0 },
@@ -49,6 +49,7 @@ let list = [
     { id: 11, name: '폴리 치마', price: 18000, stock: 9, heart: false, cart: false, cartStock: 0 }
 ];
 
+// init
 show();
 
 function priceToString(price) {
@@ -66,6 +67,8 @@ function re() {
     $jjimCart = get('.jjim')
     $chk = getAll('#wrapB #container .cartUl_box ul li .xi-check-circle-o')
 };
+
+// list 출력
 function show() {
     $ul.innerHTML = ''
     for (let i = 0; i < list.length; i++) {
@@ -86,8 +89,9 @@ function show() {
     pic();
     jjim();
     add();
-
 }
+
+// hover (썸네일 호버)
 function pic() {
     $li.forEach((element, idx) => {
         element.addEventListener('mouseenter', e => {
@@ -99,6 +103,7 @@ function pic() {
         })
     })
 }
+
 // JJIM
 function jjim() {
     $ht.forEach(elemet => {
@@ -117,35 +122,33 @@ function jjim() {
         })
     });
 }
-// cart +/-
+
+// cart +/- (카트 안에 상품 증가/감소)
 function cartPM(incBtn, redBtn) {
     incBtn.addEventListener('click', e => {
-
         let id = e.currentTarget.parentElement.dataset.id
-
         if (list[id].stock !== 0) {
             list[id].stock--
             list[id].cartStock++
             e.currentTarget.nextElementSibling.nextElementSibling.textContent = list[id].cartStock;
             show();
-
         }
     })
-    redBtn.addEventListener('click', e => {
 
+    redBtn.addEventListener('click', e => {
         let id = e.currentTarget.parentElement.dataset.id
         if (list[id].cartStock !== 1) {
             list[id].stock++
             list[id].cartStock--
             e.currentTarget.nextElementSibling.textContent = list[id].cartStock;
             show()
-
         }
     })
 }
+
+// remove cart item (장바구니 상품 제거)
 function cartRemove(remBtn) {
     remBtn.addEventListener('click', e => {
-
         let id = e.currentTarget.parentElement.dataset.id
         list[id].stock += list[id].cartStock;
         list[id].cartStock = 0;
@@ -154,11 +157,10 @@ function cartRemove(remBtn) {
         e.currentTarget.parentElement.remove()
         cartList = cartList.filter(item => item !== id);
         show()
-
-
     })
 }
 
+// 찜 상품 담기
 $jjimCart.addEventListener('click', e => {
     for (let i = 0; i < idList.length; i++) {
         list[idList[i]].heart = true;
@@ -225,6 +227,7 @@ $jjimCart.addEventListener('click', e => {
 
 })
 
+// remove cart all (장바구니 비우기)
 $rem.addEventListener('click', e => {
     let $cartLis = getAll('#container .cart_box ul li')
     if ($cartLis.length) {
@@ -241,6 +244,8 @@ $rem.addEventListener('click', e => {
         show()
     }
 })
+
+// add cart (장바구니에 담기)
 function add() {
     $add.forEach(ele => {
         ele.addEventListener('click', e => {
@@ -284,6 +289,22 @@ function add() {
     })
 }
 
+// order cart (장바구니 주문하기)
+$goOrder.addEventListener('click', e => {
+    $bg.style.display = 'block'
+    $loading.style.display = 'block'
+
+    setTimeout(() => {
+        $bg.style.display = 'none'
+        $loading.style.display = 'none'
+        $wrap.style.display = 'none'
+        $wrapC.style.display = 'block'
+        showCart();
+        window.scrollTo(0, 0);
+    }, 1000);
+    $chk = getAll('#wrapB #container .cartUl_box ul li .xi-check-circle-o')
+})
+
 $ord.addEventListener('click', e => {
     $bg.style.display = 'block'
     $loading.style.display = 'block'
@@ -299,7 +320,7 @@ $ord.addEventListener('click', e => {
     $chk = getAll('#wrapB #container .cartUl_box ul li .xi-check-circle-o')
 })
 
-// more btn
+// more btn (더 보기 버튼)
 $more.addEventListener('click', e => {
     uh += 635;
     if (uh === 2520) {
@@ -308,6 +329,8 @@ $more.addEventListener('click', e => {
     }
     $ul_box.style.height = uh + 'px';
 });
+
+// total price (총 금액)
 function totalPrice() {
     let cartItems = list.filter(item => item.cart === true);
     let prices = cartItems.map(item => item.price);
@@ -322,6 +345,7 @@ function totalPrice() {
     $price.innerHTML = `상품 금액 ${priceToString(total)}원 + 배송비 3,000원 = ${priceToString(total + 3000)}원`
 }
 
+// order cart +/- (주문하기 장바구니 수량 증감)
 function cartPMC(incBtnC, redBtnC) {
     incBtnC.addEventListener('click', e => {
         let id = e.currentTarget.parentElement.parentElement.dataset.id
@@ -373,6 +397,8 @@ function cartPMC(incBtnC, redBtnC) {
     }
     show();
 }
+
+// remove order cart (주문하기 장바구니 제거)
 function cartRemoveC(remBtnC) {
     remBtnC.addEventListener('click', e => {
         let id = e.currentTarget.parentElement.dataset.id
@@ -387,11 +413,15 @@ function cartRemoveC(remBtnC) {
         if (cartList.length === 0) $cartpageUl.innerHTML = '<li class="t"><img class="timg" src="images/T.png" alt="텅"></li>'
     })
 }
+
+// check order cart (주문하기 장바구니 체크)
 function chkC(chkBtnC) {
     chkBtnC.addEventListener('click', e => {
         e.currentTarget.classList.toggle('on')
     })
 }
+
+// order cart show (주문하기 장바구니 출력)
 function showCart() {
     $cartpageUl.innerHTML = ''
     if (cartList.length === 0) $cartpageUl.innerHTML = '<li class="t"><img class="timg" src="images/T.png" alt="텅"></li>'
@@ -446,6 +476,7 @@ function showCart() {
     totalPrice()
 }
 
+// logo click (로고 클릭)
 $logo.addEventListener('click', e => {
     $wrap.style.display = 'block'
     $wrapC.style.display = 'none'
@@ -482,6 +513,8 @@ $logo.addEventListener('click', e => {
     show();
     window.scrollTo(0, 0);
 })
+
+// today (header 오늘만 특가)
 $today.addEventListener('click', e => {
     $wrap.style.display = 'block'
     $wrapC.style.display = 'none'
