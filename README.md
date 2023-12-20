@@ -8,14 +8,15 @@
 | ----------- | ------ | ----------------------------------- |
 
 ## 프로젝트 사이트
-<a href="https://yeonhub.github.io/PP-shopping-basket/" target="_blank"><img src="./mdimages/Yeonshop_logo.png"></a>
 
+<a href="https://yeonhub.github.io/PP-shopping-basket/" target="_blank"><img src="./mdimages/Yeonshop_logo.png"></a>
 
 ## 프로젝트 참고 사이트
 
 [아뜨랑스](https://www.attrangs.co.kr)
 
 ## 프로젝트 기술 스택
+
 <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"> <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white"> <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
 
 ## 프로젝트 캡쳐
@@ -358,5 +359,27 @@ function totalPrice() {
 }
 ```
 
+---
+
+## 리펙터링 (23.12.11)
+
+[@리펙터링 후기](https://nonmajor-be-developer.tistory.com/entry/2%EC%B0%A8-%ED%94%84%EB%A6%AC%EC%98%A8%EB%B3%B4%EB%94%A9-%EC%B1%8C%EB%A6%B0%EC%A7%80FE-%EA%B3%BC%EC%A0%9C-%EB%B9%84%EC%A6%88%EB%8B%88%EC%8A%A4-%EB%A1%9C%EC%A7%81-%EB%B6%84%EB%A6%AC-1#3.%20%EA%B2%B0%EA%B3%BC-1)
+
+작업내용
+
+1) 비즈니스 로직, UI 로직 분리
+2) 재사용 가능 함수 캡슐화 및 분리
+
+결과
+
+1) 하나의 함수가 비즈니스 로직 또는 UI 로직을 담당하도록 분리
+2) 재고의 수량을 업데이트하는 함수 생성
+
+```javascript
+function updateStock(id, stockDelta, cartStockDelta) {
+    list[id].stock += stockDelta;
+    list[id].cartStock += cartStockDelta;
+}
+```
 
 [def]: ttps://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=blac
