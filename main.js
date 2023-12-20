@@ -124,6 +124,7 @@ function pic() {
 //         })
 //     });
 // }
+
 function updateJjimList(id, isAdd) {
     if (isAdd) {
         idList.push(id);
@@ -175,6 +176,7 @@ function jjimEventListeners() {
 //     })
 // }
 
+// 수량 증감 함수
 function updateStock(id, stockDelta, cartStockDelta) {
     list[id].stock += stockDelta;
     list[id].cartStock += cartStockDelta;
@@ -184,7 +186,7 @@ function updateStock(id, stockDelta, cartStockDelta) {
 function cartPM(incBtn, redBtn) {
     incBtn.addEventListener('click', e => {
         let id = e.currentTarget.parentElement.dataset.id
-        if(list[id].stock !== 0){
+        if (list[id].stock !== 0) {
             updateStock(id, -1, 1);
         }
         e.currentTarget.nextElementSibling.nextElementSibling.textContent = list[id].cartStock;
@@ -192,7 +194,7 @@ function cartPM(incBtn, redBtn) {
     })
     redBtn.addEventListener('click', e => {
         let id = e.currentTarget.parentElement.dataset.id
-        if(list[id].cartStock !== 1){
+        if (list[id].cartStock !== 1) {
             updateStock(id, 1, -1);
         }
         e.currentTarget.nextElementSibling.textContent = list[id].cartStock;
@@ -318,7 +320,6 @@ function add() {
         });
     });
 }
-
 
 // total price (총 금액)
 function totalPrice() {
